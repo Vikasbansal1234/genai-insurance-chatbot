@@ -1482,8 +1482,6 @@ GeniAi/
 
 ## Demo Video
 
-[![Demo Video](https://img.shields.io/badge/📹-Watch%20Demo%20Video-blue)](assets/Demo.mp4)
+<iframe src="https://vimeo.com/1134231863?share=copy&fl=sv&fe=ci" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="GeniAI Demo Video"></iframe>
 
-**Click the badge above to watch the demo video, or download it from the [`assets`](assets/Demo.mp4) folder.**
-
-> **Note:** The demo video file is located in the `assets` folder. You can download it directly from there.
+<p><a href="https://vimeo.com/1134231863">GeniAI Demo Video</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
