@@ -311,40 +311,71 @@ git clone <repository-url>
 cd GeniAi
 ```
 
-#### Step 2: Create Environment File
+#### Step 2: Create Environment Files
 
-Create a `.env` file in the root directory with the following variables:
+Create `.env` files in three locations: **root**, **backend**, and **web** folders.
+
+**1. Root `.env` file** (create in project root):
 
 ```env
-# OpenAI API Key (REQUIRED)
-OPENAI_API_KEY=your-openai-api-key-here
+# Docker Compose Environment Variables
+# Copy this file to .env and fill in your actual values
 
-# JWT Secret
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-
-# MongoDB Configuration
-MONGODB_URI=mongodb://admin:password@mongodb:27017/geniai?authSource=admin
-
-# AWS S3 Configuration
-AWS_ACCESS_KEY_ID=your-aws-access-key-id
-AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
-AWS_REGION=us-east-1
-AWS_S3_BUCKET_NAME=your-s3-bucket-name
-
-# Frontend API URL
-NEXT_PUBLIC_API_URL=http://localhost:8080/api
-
-# Backend
+# Backend Configuration
 NODE_ENV=production
 PORT=8080
 
+# OpenAI API Key (get from https://platform.openai.com)
+OPENAI_API_KEY=
+
+# MongoDB Atlas Connection String
+# Format: mongodb+srv://username:password@cluster.mongodb.net/?appName=yourapp
+MONGODB_ATLAS_URI=mongodb+srv://username:password@cluster.mongodb.net/?appName=yourapp
+MONGODB_ATLAS_DB_NAME=test
+
+# Frontend Configuration
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+
+# JWT Secret (generate with: openssl rand -base64 32)
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+
+# AWS S3 Configuration
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 AWS_REGION=us-east-1
 AWS_S3_BUCKET_NAME=your-bucket-name
 ```
 
-**Important**: Replace `your-openai-api-key-here` with your actual OpenAI API key.
+**2. Backend `.env` file** (create in `backend/` folder):
+
+```env
+# OpenAI API Key
+OPENAI_API_KEY=
+
+# MongoDB Atlas Configuration
+MONGODB_ATLAS_URI=mongodb+srv://username:password@cluster.mongodb.net/?appName=yourapp
+MONGODB_ATLAS_COLLECTION_NAME=pdfembeddings
+MONGODB_ATLAS_DB_NAME=test
+
+# AWS S3 Configuration
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET_NAME=your-bucket-name
+```
+
+**3. Web `.env` file** (create in `web/` folder):
+
+```env
+# Frontend API URL
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+```
+
+**Important Notes:**
+- Replace all placeholder values with your actual credentials
+- Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com)
+- Generate JWT secret with: `openssl rand -base64 32`
+- MongoDB Atlas URI should include your username, password, and cluster details
 
 #### Step 3: Start the Application
 
@@ -1318,6 +1349,7 @@ GeniAi/
 │   │   └── README.md                 # Test documentation
 │   ├── dist/                         # Compiled JavaScript
 │   ├── uploads/                      # Temporary PDF Storage
+│   ├── .env                          # Backend environment variables (create this)
 │   ├── Dockerfile                    # Backend Docker configuration
 │   ├── jest.config.js               # Jest test configuration
 │   ├── tsconfig.eslint.json          # ESLint TypeScript config
@@ -1368,6 +1400,7 @@ GeniAi/
 │   │   └── use-mobile.ts             # Responsive hook
 │   │
 │   ├── middleware.ts                 # Route protection
+│   ├── .env                          # Frontend environment variables (create this)
 │   ├── Dockerfile                    # Frontend Docker configuration
 │   ├── components.json               # shadcn/ui components config
 │   ├── eslint.config.mjs             # ESLint configuration
@@ -1379,7 +1412,7 @@ GeniAi/
 │   └── tailwind.config.js
 │
 ├── docker-compose.yml                # Docker Compose configuration
-├── .env                              # Environment variables (create this)
+├── .env                              # Root environment variables (create this)
 ├── node_modules/                     # Root dependencies
 ├── package.json                      # Workspace configuration
 ├── package-lock.json
