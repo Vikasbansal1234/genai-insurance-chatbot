@@ -1479,3 +1479,10 @@ GeniAi/
 - **Next.js** - Frontend framework
 - **MongoDB** - Database and vector search
 - **@assistant-ui** - Chat UI components
+
+## Demo Video
+
+<video width="600" controls>
+  <source src="assets/Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
