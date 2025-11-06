@@ -1486,3 +1486,5 @@ GeniAi/
   <source src="assets/Demo.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+> **Note:** You can download the demo video from the `assets` folder.
