@@ -1482,9 +1482,8 @@ GeniAi/
 
 ## Demo Video
 
-<video width="600" controls>
-  <source src="assets/Demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Demo Video](https://img.shields.io/badge/📹-Watch%20Demo%20Video-blue)](assets/Demo.mp4)
 
-> **Note:** You can download the demo video from the `assets` folder.
+**Click the badge above to watch the demo video, or download it from the [`assets`](assets/Demo.mp4) folder.**
+
+> **Note:** The demo video file is located in the `assets` folder. You can download it directly from there.
