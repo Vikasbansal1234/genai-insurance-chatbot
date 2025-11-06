@@ -1,0 +1,32 @@
+{
+  "name": "geniai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently --names \"BACKEND,WEB\" --prefix-colors \"blue,magenta\" -k \"npm run dev:backend\" \"npm run dev:web\"",
+    "dev:backend": "npm run start:dev --workspace=backend",
+    "dev:web": "npm run dev --workspace=web",
+    "build": "npm run build --workspaces",
+    "build:backend": "npm run build --workspace=backend",
+    "build:web": "npm run build --workspace=web",
+    "start": "concurrently --names \"BACKEND,WEB\" --prefix-colors \"blue,magenta\" -k \"npm run start:backend\" \"npm run start:web\"",
+    "start:backend": "npm run start:prod --workspace=backend",
+    "start:web": "npm run start --workspace=web",
+    "install:all": "npm install --legacy-peer-deps && cd backend && npm install --legacy-peer-deps && cd ../web && npm install --legacy-peer-deps && cd .."
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "overrides": {
+    "zod": "^4.1.12"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
+

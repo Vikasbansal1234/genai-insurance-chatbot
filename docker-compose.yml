@@ -1,0 +1,49 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      args:
+        - RUN_LINT=${RUN_LINT:-true}
+        - RUN_FORMAT_CHECK=${RUN_FORMAT_CHECK:-true}
+        - RUN_TESTS=${RUN_TESTS:-true}
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - PORT=${PORT:-8080}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MONGODB_ATLAS_URI=${MONGODB_ATLAS_URI}
+      - MONGODB_ATLAS_COLLECTION_NAME=${MONGODB_ATLAS_COLLECTION_NAME:-pdfembeddings}
+      - MONGODB_ATLAS_DB_NAME=${MONGODB_ATLAS_DB_NAME:-test}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_S3_BUCKET_NAME=${AWS_S3_BUCKET_NAME}
+    volumes:
+      - ./backend/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    env_file:
+      - ./web/.env

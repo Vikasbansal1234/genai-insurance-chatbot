@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist
+build
+coverage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads
+uploads
+
+# Config files that shouldn't be formatted
+*.min.js
+*.min.css
+
+# Generated files
+*.d.ts.map
+
